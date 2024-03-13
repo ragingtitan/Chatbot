@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded',()=>{
     let sidebarContent=document.querySelector('.sidebar-content');
     opensidebarBtn.addEventListener('click',()=>{
         let sidebar=document.querySelector('.sidebar');
-        //sidebar.style.width="300px";
         sidebar.classList.add('open-sidebar');
         sidebar.classList.remove('close-sidebar');
         cross.classList.remove('hidden')
@@ -15,7 +14,6 @@ document.addEventListener('DOMContentLoaded',()=>{
     })
     cross.addEventListener('click',()=>{
         let sidebar=document.querySelector('.sidebar');
-        //sidebar.style.width="0px";
         sidebar.classList.remove('open-sidebar');
         sidebar.classList.add('close-sidebar');
         cross.classList.add('hidden')
@@ -27,26 +25,26 @@ document.addEventListener('DOMContentLoaded',()=>{
     });
 
     //Typing animations
-    const words = ["Hi!","I am J.A.R.V.I.S","How can I help you today?"];
-let index = 0;
-let wordIndex = 0;
-let intervalId;
+    const words = ["Hello!","I am J.A.R.V.I.S","How can I help you today?"];
+    let index = 0;
+    let wordIndex = 0;
+    let intervalId;
 
-function typingText() {
-    const target = document.getElementById("type");
-    const currentWord = words[wordIndex];
-    const currentWordLength = currentWord.length;
+    function typingText() {
+        const target = document.getElementById("type");
+        const currentWord = words[wordIndex];
+        const currentWordLength = currentWord.length;
 
-    if (index < currentWordLength) {
-        target.textContent += currentWord.charAt(index);
-        index++;
-        setTimeout(typingText, 50);
-    } else {
-        setTimeout(() => {
-            intervalId = setInterval(removeText, 20);
-        }, 1500);
+        if (index < currentWordLength) {
+            target.textContent += currentWord.charAt(index);
+            index++;
+            setTimeout(typingText, 50);
+        } else {
+            setTimeout(() => {
+                intervalId = setInterval(removeText, 20);
+            }, 2000);
+        }
     }
-}
 
 // To remove text after typing
 function removeText() {
@@ -83,5 +81,4 @@ jarvisAdvanced.addEventListener('change', function() {
         jarvisLite.checked = false;
     }
 });
-
 });
