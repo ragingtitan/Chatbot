@@ -5,25 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>J.A.R.V.I.S - AI Powered Bot assistant.</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="stylemediaqueries.css">
     <link rel="stylesheet" href="style.css" />
     <link rel="shortcut icon" href="jarvis logo.png" type="image/x-icon">
   </head>
-  <body class="transition-all">
+  <body class="transition-all duration-300">
     <div class="body text-gray-300">
       <div class="navbar h-fit">
         <nav>
           <ul>
             <li>
               <div class="flex items-center gap-2">
-                <button class="newchat p-2 transition-all duration-200 btn btn-neutral btn-small flex h-9 w-9 items-center justify-center whitespace-nowrap rounded-lg">
+                <button class="newchat mx-2 p-2 transition-all duration-200 btn btn-neutral btn-small flex h-9 w-9 items-center justify-center whitespace-nowrap rounded-lg">
                   <div class="flex w-full items-center justify-center gap-2">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M16.7929 2.79289C18.0118 1.57394 19.9882 1.57394 21.2071 2.79289C22.4261 4.01184 22.4261 5.98815 21.2071 7.20711L12.7071 15.7071C12.5196 15.8946 12.2652 16 12 16H9C8.44772 16 8 15.5523 8 15V12C8 11.7348 8.10536 11.4804 8.29289 11.2929L16.7929 2.79289ZM19.7929 4.20711C19.355 3.7692 18.645 3.7692 18.2071 4.2071L10 12.4142V14H11.5858L19.7929 5.79289C20.2308 5.35499 20.2308 4.64501 19.7929 4.20711ZM6 5C5.44772 5 5 5.44771 5 6V18C5 18.5523 5.44772 19 6 19H18C18.5523 19 19 18.5523 19 18V14C19 13.4477 19.4477 13 20 13C20.5523 13 21 13.4477 21 14V18C21 19.6569 19.6569 21 18 21H6C4.34315 21 3 19.6569 3 18V6C3 4.34314 4.34315 3 6 3H10C10.5523 3 11 3.44771 11 4C11 4.55228 10.5523 5 10 5H6Z" fill="currentColor"></path></svg>
                   </div>
                 </button>
-                <div class="wrapper">
-                  
-                </div>
-                <div class="model-selection transition-all duration-200 hover:bg-token-main-surface-secondary radix-state-open:bg-token-main-surface-secondary group flex cursor-pointer items-center gap-1 rounded-xl px-3 py-2 text-lg font-medium" type="button" id="radix-:raq:" aria-haspopup="menu" aria-expanded="false" data-state="closed">
+                <div class="p-2 model-selection transition-all duration-200 hover:bg-token-main-surface-secondary radix-state-open:bg-token-main-surface-secondary group flex cursor-pointer items-center gap-1 rounded-xl px-3 py-2 text-lg font-medium" type="button" id="radix-:raq:" aria-haspopup="menu" aria-expanded="false" data-state="closed">
                   <div>J.A.R.V.I.S</div>
                   <svg width="16" height="17" viewBox="0 0 16 17" fill="none" class="text-token-text-tertiary">
                     <path d="M11.3346 7.83203L8.00131 11.1654L4.66797 7.83203" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -33,7 +31,7 @@
             </li>
           </ul>
         </nav>
-        <div class="dropdown-selection my-2 flex justify-center flex-col w-fit absolute left-12 h-24 rounded-xl z-50 hidden">
+        <div class="dropdown-selection my-2 flex justify-center flex-col w-fit absolute left-16 h-24 rounded-xl z-50 hidden">
           <ul>
             <li class="p-2">
               <label for="lite">J.A.R.V.I.S Lite</label>
@@ -57,8 +55,9 @@
           <svg width="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="white" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
         </div>
         <div class="sidebar-content overflow-y-scroll flex flex-col items-center hidden p-2">
-          <div class="summary hover:cursor-pointer h-fit text-center p-2 my-1"><p class="hover:text-white transition-all duration-200">New Chat</p>
-          </div>
+          <input id="table1" type="button" value="data" class="summary hover:cursor-pointer h-fit text-center p-2 my-1" />
+          <input id="table2" type="button" value="story" class="summary hover:cursor-pointer h-fit text-center p-2 my-1" />
+          <input id="table3" type="button" value="world_war_2" class="summary hover:cursor-pointer h-fit text-center p-2 my-1" />
         </div>
       </div>
       <div class="error hidden h-5/6 flex justify-center items-center">
@@ -80,15 +79,14 @@
       </div>
       <div class="prompt-area w-full fixed bottom-12">
         <div class="prompt-essentials-wrapper flex w-full items-center justify-center">
-          <div class="prompt-essentials relative flex w-5/6 items-center justify-center border-white rounded-xl">
+          <div class="prompt-essentials relative flex items-center justify-center border-white rounded-xl">
             <div class="prompt-input flex w-full items-center justify-center">
                 <!--<input autocomplete="off" id="prompt" name="prompt" class="h-16 w-full rounded-xl bg-transparent px-6 outline-none" type="text" placeholder="Message J.A.R.V.I.S..." />-->
                 <textarea autocomplete="off" id="prompt" name="prompt" class="h-16 w-full rounded-xl bg-transparent outline-none p-5" type="text" placeholder="Message J.A.R.V.I.S..." ></textarea>
             </div>
             <div class="send-message flex items-center">
               <button id="send-prompt" class="disabled:opacity-20 bg-gray-300 relative right-4 rounded-md enabled:bg-white enabled:text-black" data-testid="send-button">
-                <span class="rounded-md" data-state="closed"
-                  >
+                <span class="rounded-md" data-state="closed">
                   <svg width="32" height="32" viewBox="0 0 24 24" fill="none" class="text-black dark:text-black"><path class="path-send-btn" d="M7 11L12 6L17 11M12 18V7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                   <span id="loading-placeholder" class="flex justify-center items-center opacity-40"></span>
                 </span>
@@ -97,7 +95,7 @@
           </div>
         </div>
       </div>
-      <footer class="fixed w-full bottom-0">
+      <footer class="fixed w-full bottom-0 flex flex-col justify-center">
         <p class="p-1 text-center">J.A.R.V.I.S can make mistakes. Consider checking important information.</p>
       </footer>
     </div>

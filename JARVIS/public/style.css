@@ -1,6 +1,7 @@
 *{
     margin: 0;
-    padding: 0;   
+    padding: 0;
+    scroll-behavior: smooth;   
 }
 body,.body{
     height: 100vh;
@@ -10,7 +11,8 @@ body,.body{
 .prompt-essentials {
     border: 1px solid white;
     background-color: #212121;
-    max-width: 70%;
+    width: 50%;
+    right: 5px;
   }
 .sidebar{
     background-color: #1e1e1e;
@@ -70,7 +72,7 @@ body,.body{
     margin:5px 0px;
 }
 .response-body{
-    width: 60%;
+    width: 40%;
 }
 #prompt{
     resize: none !important;
@@ -97,6 +99,17 @@ body,.body{
 }
 .animation{
     height: 55px;
+}
+.img-logo img{
+    animation: rotate 20s linear infinite;
+}
+@keyframes rotate {
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
 }
 .response::-webkit-scrollbar {
     width: 10px; /* Width of the scrollbar */
@@ -167,4 +180,6 @@ body,.body{
       transform: rotate(360deg); /* Rotate the spinner 360 degrees */
     }
   }
-  
+  .active{
+    border: 2px white solid;
+  }

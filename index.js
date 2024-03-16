@@ -8,7 +8,7 @@ const path = require('path');
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json()); // Add this line to parse JSON bodies
-
+const tableName='story';
 const port = 8000;
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -20,7 +20,7 @@ function storeData(prompt,response,sidebardata)
         if(err) throw err;
         else{
             console.log("Connected to the database");
-            let query="INSERT INTO data3(prompt,response,sidebardata) values(?,?,?)"
+            let query=`INSERT INTO ${tableName}(prompt,response,sidebardata) values(?,?,?)`
             con.query(query, [prompt,response,sidebardata], (err, result)=>{
                 if(err) throw err;
                 else{
@@ -47,7 +47,7 @@ function loadPreviousData(callback) {
             callback(err, null);
         } else {
             console.log("Connected to the database");
-            let query = "SELECT * FROM data3";
+            let query = `SELECT * FROM ${tableName}`;
             con.query(query, (err, result) => {
                 if (err) {
                     callback(err, null);
@@ -80,7 +80,7 @@ async function passAlldata() {
             });
         });
 
-        const query = "SELECT * FROM data3";
+        const query = `SELECT * FROM ${tableName}`;
         const result = await new Promise((resolve, reject) => {
             con.query(query, (err, result) => {
                 if (err) {
@@ -101,9 +101,6 @@ async function passAlldata() {
         return ''; // Return empty string in case of error
     }
 }
-
-
- 
 
 app.get('/getprev', (req, res) => {
     loadPreviousData((err, data) => {
@@ -129,10 +126,11 @@ app.post('/response', async (req, res) => {
         let prompt = req.body.prompt;
         console.log("The prompt sent is " + prompt);
         const genAI = new GoogleGenerativeAI(API_KEY);
-        const newPrompt = await passAlldata();
+        let newPrompt = await passAlldata();
+        let chat =newPrompt+`\nUser:${prompt}\n`;
         //console.log("All prompts"+newPrompt);
         const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-        const result = await model.generateContent(newPrompt+`\nUser:${prompt}\n`);
+        const result = await model.generateContent(chat);
         const response = await result.response;
         const text = await response.text();
         //console.log(text);

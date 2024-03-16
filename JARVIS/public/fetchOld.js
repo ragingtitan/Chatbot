@@ -3,6 +3,11 @@ while (username === "" || username === null) {
     username = window.prompt("Username must be entered!: ");
 }
 
+function scrollToBottom() {
+    let interactionContainer = document.getElementById('interaction-container');
+    interactionContainer.scrollTop = interactionContainer.scrollHeight;
+}
+
 function summarizer(text) {
     // Split the string into an array of words
     const words = text.trim().split(/\s+/);
@@ -42,7 +47,6 @@ async function fetchOldData(username) {
     const url = 'http://localhost:8000/getprev';
     try {
         const response = await fetch(url);
-
         if (!response.ok) {
             throw new Error('Failed to fetch response from server.');
         }
@@ -67,11 +71,12 @@ async function fetchOldData(username) {
             interactionContainer.insertAdjacentHTML('beforeend', interaction);
 
             // Prompt summary to be appended to the sidebar
-            const addSummary = `<div class="summary hover:cursor-pointer h-fit text-center p-2 my-1">
+            /*const addSummary = `<div class="summary hover:cursor-pointer h-fit text-center p-2 my-1">
                 <p class="hover:text-white transition-all duration-200">${summarizer(jsonResponse[i].prompt)}</p>
             </div>`;
-            sidebar.insertAdjacentHTML('afterbegin', addSummary);
+            sidebar.insertAdjacentHTML('afterbegin', addSummary);*/
             document.getElementById('prompt').focus();
+            scrollToBottom();
         }
     } catch (error) {
         console.error('Error:', error.message);

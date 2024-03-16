@@ -1,7 +1,6 @@
-//Fetch old data
-
-
 document.addEventListener('DOMContentLoaded',()=>{
+  
+  //All important variables declared here 
   let sidebar = document.querySelector('.sidebar-content');
   let loadingPlaceholder = document.getElementById('loading-placeholder');
   let logoWelcome=document.querySelector('.logo-welcome');
@@ -14,7 +13,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
   //Listener for input change and change button state.
   document.getElementById('prompt').addEventListener('input',()=>{
-    let prompt=document.getElementById('prompt').value.trim();
+    let prompt=document.getElementById('prompt').value.trim();//Disregard trailing and leading whitespace
     if(prompt!=null || prompt!='' || prompt!="")
     {
       sendPromptBtn.disabled = false;
@@ -24,11 +23,14 @@ document.addEventListener('DOMContentLoaded',()=>{
       sendPromptBtn.disabled = true;
     }
   });
+  //Add event listener to sendPromptBtn to send the prompt
   sendPromptBtn.addEventListener('click',()=>{
    
     //Button is disabled when prompt is sent.
     sendPromptBtn.disabled = true;
+    //Button is changed
     path.classList.add('hidden');
+    //Add the loading effect
     loadingPlaceholder.classList.add("loading-spinner");
     let prompt=document.getElementById('prompt').value;
   logoWelcome.classList.add('hidden');
@@ -44,6 +46,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     
     return firstFourWords;
 }
+
   //Formats the output response
   function formatText(text) {
     // Define regular expressions for matching patterns
@@ -66,7 +69,10 @@ document.addEventListener('DOMContentLoaded',()=>{
     return formattedText;
 }
 
-
+function scrollToBottom() {
+  let interactionContainer = document.getElementById('interaction-container');
+  interactionContainer.scrollTop = interactionContainer.scrollHeight;
+}
 //Getting the response from the server at an appropriate endpoint.
   async function sendPrompt() 
   {
@@ -80,21 +86,18 @@ document.addEventListener('DOMContentLoaded',()=>{
                   },
                   body: JSON.stringify({ prompt: prompt })
               });
-      
+                //if error is returned apply all error rules
               if (!response.ok || response.error) {
                   error.classList.remove('hidden');
-
+                  sendPromptBtn.disabled = true;
                   interactionContainer.classList.add('hidden');
                   path.classList.remove('hidden');
                   loadingPlaceholder.classList.remove("loading-spinner");
                   throw new Error('Failed to fetch response from server.');
-                  
-                  
               }
               else{
                 error.classList.add('hidden');
               }
-
               //Response object
               const jsonResponse = await response.json();
               console.log(jsonResponse.response);
@@ -119,17 +122,20 @@ document.addEventListener('DOMContentLoaded',()=>{
           </div>`;
           interactionContainer.insertAdjacentHTML('beforeend',interaction);
           //Prompt summary to be appended to the sidebar
-          const addSummary = `<div class="summary hover:cursor-pointer h-fit text-center p-2 my-1"><p class="hover:text-white transition-all duration-200">${summarizer(prompt)}</p>
+          /*const addSummary = `<div class="summary hover:cursor-pointer h-fit text-center p-2 my-1"><p class="hover:text-white transition-all duration-200">${summarizer(prompt)}</p>
           </div>`;
-          sidebar.insertAdjacentHTML('afterbegin', addSummary);
+          sidebar.insertAdjacentHTML('afterbegin', addSummary);*/
           document.getElementById('prompt').value = '';
-
+          scrollToBottom();
               //document.getElementById('response').textContent = jsonResponse.response;
           } catch (error) {
               error.classList.remove('hidden');
+              //Reset the textarea after the error
+              document.getElementById('prompt').value = '';
               //Removing spin animation after error is thrown
               loadingPlaceholder.classList.remove("loading-spinner");
-              sendPromptBtn.disabled=false;
+              //Set button to disabled state after error thus forcing the reload
+              sendPromptBtn.disabled=true;
               let responseBody=document.querySelectorAll('.response-body');
               responseBody.forEach(element => {
                 element.classList.add('hidden');
