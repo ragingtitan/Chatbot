@@ -1,0 +1,89 @@
+/* Default styles */
+
+/* For screens smaller than 400px */
+@media only screen and (min-width: 0px) and (max-width: 400px){
+  .body{
+    display: none;
+  }
+  body{
+    height: 99vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .small-screen-msg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+  }
+}
+
+/* For screens between 401px and 1000px */
+@media only screen and (min-width: 401px) and (max-width: 1000px) {
+  /* Add styles for medium-sized screens here */
+  .prompt-essentials {
+      border: 1px solid white;
+      background-color: #212121;
+      width: 80%!important;
+    }
+    .response-body{
+      width: 80% !important;
+  }
+  .scroll-down-btn{
+    bottom: 100px;
+  }
+  .small-screen-msg{
+    display: none;
+  }
+  .footer{
+    font-size: 0.8rem;
+  }
+}
+
+/* For screens larger than 1000px */
+@media only screen and (min-width: 1000px) {
+  /* Add styles for large screens here */
+  .scroll-down-btn{
+    bottom: 100px;
+  }
+  .small-screen-msg{
+    display: none;
+  }
+}
+
+/* For screens up to 401px */
+@media only screen and (max-width: 401px) {
+  /* Add styles for small screens here */
+  .prompt-essentials {
+      border: 1px solid white;
+      background-color: #212121;
+      width: 80% !important;
+    }
+    .response-body{
+      width: 80% !important;
+  }
+  .open-sidebar{
+      width: 180px !important;
+  }
+  .close-sidebar{
+      width: 0px;
+  }
+  footer p{
+      font-size: 14px;
+  }
+  #type{
+      font-size: 25px !important;
+  }
+  .cursor{
+      height: 25px !important;
+  }
+  .img-logo img{
+      width: 70px !important;
+  }
+  .scroll-down-btn{
+    bottom: 100px;
+  }
+  
+}
