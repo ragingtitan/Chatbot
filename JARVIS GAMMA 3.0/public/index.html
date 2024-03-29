@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>J.A.R.V.I.S - AI Powered Bot assistant.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="stylemediaqueries.css">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="jarvis logo.png" type="image/x-icon" width="10">
+    
+    <style>
+      html.dark {
+           --tw-bg-opacity: 1;
+           background-color: rgba(31, 41, 55, var(--tw-bg-opacity));
+       }
+      
+      html.dark .dark\:ml-6 {
+            margin-left: 1.5rem;
+       }
+   
+      html.dark .dark\:bg-blue-500 {
+            --tw-bg-opacity: 1;
+           background-color: rgba(59, 130, 246, var(--tw-bg-opacity));
+      }
+      .keyword {
+        color: #569cd6; 
+    }
+    .comment {
+        color: #6a9955;
+    }
+    .string {
+        color: #ce9178;
+    }
+    .number {
+        color: #b5cea8;
+    }
+    .operator {
+        color: #d4d4d4;
+    }
+    .builtin {
+        color: #4ec9b0;
+    }
+    .punctuation {
+        color: #d4d4d4;
+    }
+
+       
+   </style>
+  </head>
+  <body class="">
+    <div class="small-screen-msg w-full bg-white rounded-lg m-2 p-2">
+      <h1 class="text-red-900 text-xl text-center font-bold">This website is not optimized on your device!</h1>
+      <p class="text-black text-center my-2">You device appears to have a very small screen width and/or height, hence the website cannot be displayed. Please use a different device of greater height and width.</p>
+    </div>
+    <div class="body transition-all duration-300 text-gray-300">
+      <div class="navbar h-fit">
+        <nav>
+          <ul>
+            <li>
+              <div class="flex items-center mx-2 justify-between gap-2">
+                <div class="buttons-wrapper items-center gap-2 flex">
+                  <button title="New Chat" class="newchat p-2 transition-all duration-300 btn btn-neutral btn-small flex h-9 w-9 items-center justify-center whitespace-nowrap rounded-lg">
+                    <div class="flex w-full items-center justify-center gap-2">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M16.7929 2.79289C18.0118 1.57394 19.9882 1.57394 21.2071 2.79289C22.4261 4.01184 22.4261 5.98815 21.2071 7.20711L12.7071 15.7071C12.5196 15.8946 12.2652 16 12 16H9C8.44772 16 8 15.5523 8 15V12C8 11.7348 8.10536 11.4804 8.29289 11.2929L16.7929 2.79289ZM19.7929 4.20711C19.355 3.7692 18.645 3.7692 18.2071 4.2071L10 12.4142V14H11.5858L19.7929 5.79289C20.2308 5.35499 20.2308 4.64501 19.7929 4.20711ZM6 5C5.44772 5 5 5.44771 5 6V18C5 18.5523 5.44772 19 6 19H18C18.5523 19 19 18.5523 19 18V14C19 13.4477 19.4477 13 20 13C20.5523 13 21 13.4477 21 14V18C21 19.6569 19.6569 21 18 21H6C4.34315 21 3 19.6569 3 18V6C3 4.34314 4.34315 3 6 3H10C10.5523 3 11 3.44771 11 4C11 4.55228 10.5523 5 10 5H6Z" fill="currentColor"></path></svg>
+                    </div>
+                  </button>
+                  <div title="Select version" class="p-2 model-selection my-1 transition-all duration-300 hover:bg-token-main-surface-secondary radix-state-open:bg-token-main-surface-secondary group flex cursor-pointer items-center gap-1 rounded-xl px-3 py-2 text-lg font-medium" type="button" id="radix-:raq:" aria-haspopup="menu" aria-expanded="false" data-state="closed">
+                    <div>JARVIS</div>
+                    <svg width="16" height="17" viewBox="0 0 16 17" fill="none" class="text-token-text-tertiary">
+                      <path d="M11.3346 7.83203L8.00131 11.1654L4.66797 7.83203" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                  </div>
+                </div>
+                
+                <div class="dark-mode hidden">
+                  <button 
+                    title="Toggle Theme" 
+                    onclick="theme()"
+                    class="bg-white dark-mode-btn
+                        w-12 
+                        h-6 
+                        rounded-full 
+                        p-1 
+                        bg-gray-400 
+                        dark:bg-gray-600 
+                        relative 
+                        transition-colors 
+                        duration-300 
+                        ease-in
+                        focus:outline-none 
+                        focus:ring-2 
+                        focus:ring-blue-700 
+                        dark:focus:ring-blue-600 
+                        focus:border-transparent
+                      ">
+                      <div id="toggle"
+                        class="
+                            rounded-full 
+                            w-4 
+                            h-4 
+                            bg-gray-900 
+                            dark:bg-blue-500 
+                            relative 
+                            ml-0 
+                            dark:ml-6 
+                            pointer-events-none 
+                            transition-all 
+                            duration-300 
+                            ease-out
+                        ">
+                      </div>
+                  </button>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </nav>
+        <div class="dropdown-selection flex justify-center flex-col w-fit absolute left-12 h-24 rounded-xl z-50 hidden">
+          <ul>
+            <li class="p-2">
+              <label for="lite">JARVIS Lite</label>
+              <input class="hover:cursor-pointer" id="jarvis-lite" type="radio" name="lite">
+            </li>
+            <li class="p-2">
+              <label for="advanced">JARVIS Full</label>
+              <input disabled class="hover:cursor-pointer" id="jarvis-advanced" type="radio" name="advanced">
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="fixed left-0 top-1/2 z-40 h-10 w-5 p-1">
+        <button title="Open Sidebar" class="toggle-sidebar h-10 w-5">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="15">
+            <path fill="white" d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"/></svg>
+        </button>
+      </div>
+      <div class="sidebar border-gray-300 rounded-lg absolute z-40 transition-all duration-300">
+        
+        <div title="Close Sidebar" class="cross rounded-lg justify-center hover:bg-red-900 transition-all duration-300 hidden p-2 hover:cursor-pointer">
+          <svg width="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="white" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
+        </div>
+        <div class="sidebar-content overflow-y-scroll h-full flex flex-col items-center hidden p-2">
+          <label class="px-1 w-full font-semibold text-lg" for="">Recent</label>
+          <input id="default" type="button" value="Nothing to see here..." class="summary hover:cursor-pointer h-fit text-center p-2 my-1" />
+        </div>
+      </div>
+      <div class="error hidden h-5/6 flex justify-center items-center">
+        <p class="text-red-500 text-2xl text-center">Looks like an error has occured! Please reload the page.</p>
+      </div>
+      <div id="interaction-container" class="overflow-x-hidden overflow-y-scroll response w-full flex flex-col items-center hidden gap-5">
+        
+        
+      </div>
+      <div class="logo-welcome select-none flex flex-col h-5/6 items-center justify-center">
+        <div class="img-logo flex justify-center items-center">
+          <img class="m-2" src="jarvis logo.png" alt="" width="90">
+        </div>
+        <div class="animation flex items-center">
+          <span id="type" class="flex text-3xl items-center font-semibold">
+          </span>
+          <span class="cursor"></span>
+          
+        </div>
+      </div>
+      <button class="hidden relative scroll-down-btn z-10 transition-all duration-300 rounded-full bg-clip-padding text-token-text-secondary bg-token-main-surface-primary "><svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="m-1 text-token-text-primary"><path d="M17 13L12 18L7 13M12 6L12 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+      <div class="prompt-area w-full fixed bottom-8 transition-all duration-300">
+        <div class="prompt-essentials-wrapper flex w-full items-center justify-center">
+          <div class="prompt-essentials transition-all duration-300 relative flex items-center justify-center border-white rounded-xl">
+            <div class="prompt-input flex w-full items-center justify-center">
+                <textarea autocomplete="off" id="prompt" name="prompt" class="h-16 w-full rounded-xl bg-transparent outline-none p-5" type="text" placeholder="Message JARVIS..." ></textarea>
+            </div>
+            <div class="send-message transition-all duration-300 flex items-center">
+              <button title="Send Button" id="send-prompt" class="disabled:opacity-20 bg-gray-300 relative right-4 rounded-md enabled:bg-white enabled:text-black" data-testid="send-button">
+                <span class="rounded-md" data-state="closed">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" class="text-black dark:text-black"><path class="path-send-btn" d="M7 11L12 6L17 11M12 18V7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                  <span id="loading-placeholder" class="flex justify-center items-center opacity-40"></span>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer class="footer fixed w-full bottom-0 flex flex-col justify-center">
+        <p class="p-1 text-center">JARVIS can make mistakes. Consider checking important information.</p>
+      </footer>
+    </div>
+    <script>
+      function theme(event) {
+     document.documentElement.classList.toggle('dark')
+        let Body=document.querySelector('.body')
+        Body.classList.toggle('dark-body');
+        let sidebar = document.querySelector('.sidebar');
+        sidebar.classList.toggle('dark-sidebar-content');
+        let cross = document.querySelector('.cross');
+        cross.classList.toggle('dark-cross');
+        let toggleSidebarBtn=document.querySelector('.toggle-sidebar');
+        toggleSidebarBtn.classList.toggle('dark-toggle-sidebar');
+        let userPrompt = document.querySelectorAll('.user-prompt');
+        userPrompt.forEach(prompt => {
+          prompt.classList.toggle('dark-prompt');
+        });
+        let interactionContainer=document.getElementById("interaction-container");
+        interactionContainer.addEventListener('change',() => {
+          let userPrompt = document.querySelectorAll('.user-prompt');
+          userPrompt.forEach(prompt => {
+          prompt.classList.toggle('dark-prompt');
+        });
+        });
+        let promptArea = document.querySelector('.prompt-essentials');
+        promptArea.classList.toggle('dark-prompt-essentials');
+        let sendPromptBtn=document.getElementById('send-prompt');
+        sendPromptBtn.classList.toggle('dark-send-prompt-btn');
+        let darkmodeBtn=document.querySelector('.dark-mode-btn');
+        darkmodeBtn.classList.toggle('dark-dark-mode-btn');
+        let scrollBtn=document.querySelector('.scroll-down-btn');
+        scrollBtn.classList.toggle('dark-scroll');
+        let cursor=document.querySelector('.cursor');
+        cursor.classList.toggle('dark-cursor');
+   }
+    </script>
+    <script src="prompt.js"></script>
+    <script src="script.js"></script>
+    <script src="fetchOld.js"></script>
+
+   
+  </body>
+</html>
