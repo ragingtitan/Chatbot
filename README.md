@@ -50,6 +50,7 @@ Technology Stack Used:
     Frameworks and Libraries used:
     1. Showdown.js - for markdown to html conversion.
     2. Prism.js - for code highlighting.
+    
 
 Functions of different files:
 1. index.html- provides the basic barebones of the app.

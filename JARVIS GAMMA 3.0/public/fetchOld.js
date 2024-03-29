@@ -1,8 +1,3 @@
-
-/*let username = window.prompt("Enter username: ");
-while (username === "" || username === null) {
-    username = window.prompt("Username must be entered!: ");
-}*/
 let currentTable;
 let sidebar = document.querySelector('.sidebar-content');
 let scrollDownBtn=document.querySelector('.scroll-down-btn');
