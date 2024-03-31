@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JARVIS - Signup</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        html, body {
+            height: 95vh;
+        }
+        #input0{
+          position: relative;
+            border: 3px solid #dee2e6;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+           
+            transition:  box-shadow 0.15s ease-in-out;
+            background: transparent transparent;
+
+        }
+        #input1{
+          position: relative;
+            border: 3px solid #dee2e6;
+            border-radius: 10px;
+           
+            transition:  box-shadow 0.15s ease-in-out;
+            background: transparent transparent;
+
+        }
+        #input2 {
+          position: relative;
+            border: 3px solid #dee2e6;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            background: transparent transparent;
+            
+            transition:  box-shadow 0.15s ease-in-out;
+        }
+        .label0{
+          position: relative;
+          top: 43.5px;
+          left: 9px;
+          font-size: 15px;
+          width: fit-content;
+          height: fit-content;
+          transition: top 0.15s ease-in-out, font-size 0.15s ease-in-out;
+          
+        }
+        .label1{
+          position: relative;
+          top: 43.5px;
+          left: 9px;
+          font-size: 15px;
+          width: fit-content;
+          height: fit-content;
+          transition: top 0.15s ease-in-out, font-size 0.15s ease-in-out;
+          
+        }
+        .label2{
+          position: relative;
+          top: 44px;
+          left: 9px;
+          height: fit-content;
+          width: fit-content;
+          transition: top 0.15s ease-in-out, font-size 0.15s ease-in-out;
+
+        }
+        .none{
+          visibility: hidden;
+        }
+        #input1:hover,#input2:hover,#input0:hover{
+          cursor: pointer;
+        }
+    </style>
+</head>
+<body class="bg-[]">
+    <main class="h-full flex items-center justify-center">
+        <form method="post" action="/signup" class="flex flex-col justify-center w-full items-center">
+          <div class="logo-img w-72 flex justify-start my-4">
+            <img src="../jarvis logo.png" alt="" width="70">
+          </div>
+          <h1 class="text-3xl font-semibold text-left my-2 w-72">Welcome!</h1>
+          <div class="flex flex-col-reverse">
+            <input id="input0" name="Username" class="input px-2 outline-none w-72 h-16 border-4-[#dee2e6]" type="text" placeholder="" autocomplete="off">
+            <span class="label0">Username</span>
+          </div>
+          <div class="flex flex-col-reverse">
+            <input id="input1" name="Email" class="input px-2 outline-none w-72 h-16 border-4-[#dee2e6]" type="email" placeholder="" autocomplete="off" >
+            <span class="label1">Email address</span>
+          </div>
+          <div class="flex flex-col-reverse">
+            <input id="input2" name="Password" class="input px-2 outline-none w-72 h-16 border-4-[#dee2e6]" type="password" placeholder="" autocomplete="off">
+            <span class="label2">Password</span>
+          </div>
+      
+          <button class="my-6 transition-all duration-300 bg-[#0b5ed7] h-10 w-72 opacity-90 text-white rounded-md hover:opacity-100" type="submit">Sign up</button>
+          <p class="font-semibold">Already have an account? Sign in <a class="text-blue-600" href="/signin">here</a>.</p>
+          <p class="text-center my-4">© 2024 JARVIS Ltd</p>
+        </form>
+      </main>
+      <script>
+        let input1 = document.getElementById("input1");
+        let input0 = document.getElementById("input0");
+        let label0=document.querySelector(".label0");
+        let input2 = document.getElementById("input2");
+        let label1 = document.querySelector(".label1");
+        let label2 = document.querySelector(".label2");
+        label1.style.top = '25px';
+        label0.style.top = '25px';
+    
+        label2.style.top = '25px';
+        input0.addEventListener("focus", () => {
+            input0.style.boxShadow = "0px 0px 1px 4px rgba(10, 97, 226, 0.4)";
+            input0.style.border = "none";
+            label0.style.top = "25px"; // Adjust the top position without changing font size
+        });
+        input0.addEventListener("blur", () => {
+            input0.style.boxShadow = "none";
+            input0.style.border = "3px solid #dee2e6";
+            if (input0.value === '') {
+                label0.style.top = "43.5px"; // Restore the original top position
+            }
+        });
+        input1.addEventListener("focus", () => {
+            input1.style.boxShadow = "0px 0px 1px 4px rgba(10, 97, 226, 0.4)";
+            input1.style.border = "none";
+            label1.style.top = "25px"; // Adjust the top position without changing font size
+        });
+        input1.addEventListener("blur", () => {
+            input1.style.boxShadow = "none";
+            input1.style.border = "3px solid #dee2e6";
+            if (input1.value === '') {
+                label1.style.top = "43.5px"; // Restore the original top position
+            }
+        });
+        input2.addEventListener("focus", () => {
+            input2.style.boxShadow = "0px 0px 1px 4px rgba(10, 97, 226, 0.4)";
+            input2.style.border = "none";
+            label2.classList.remove("none");
+            label2.style.top = "25px"; // Adjust the top position without changing font size
+        });
+        input2.addEventListener("blur", () => {
+            input2.style.boxShadow = "none";
+            input2.style.border = "3px solid #dee2e6";
+            if (input2.value === '') {
+                label2.style.top = "44px"; // Restore the original top position
+            }
+        });
+      </script>
+</body>
+</html>
