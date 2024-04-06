@@ -1,0 +1,135 @@
+/* Default styles */
+
+/* For screens smaller than 400px */
+@media only screen and (min-width: 0px) and (max-width: 400px){
+  .body{
+    display: none;
+  }
+  body{
+    height: 95vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .small-screen-msg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+  }
+  .scroll-down-btn{
+    bottom: 100px;
+  }
+  .login-prompt{
+    display: none !important;
+  }
+}
+
+/* For screens between 401px and 1000px */
+@media only screen and (min-width: 401px) and (max-width: 1000px) {
+  /* Add styles for medium-sized screens here */
+  .prompt-essentials {
+     
+      background-color: #212121;
+      width: 80%!important;
+    }
+    .response-body{
+      width: 80% !important;
+  }
+.prompt-input{
+  border: 1px solid white;
+}
+  .small-screen-msg{
+    display: none;
+  }
+  .footer{
+    font-size: 0.8rem;
+  }
+  .scroll-down-btn{
+    bottom: 160px;
+  }
+}
+
+/* For screens larger than 1000px */
+@media only screen and (min-width: 1000px) {
+  /* Add styles for large screens here */
+  
+  .small-screen-msg {
+    display: none;
+  }
+  .scroll-down-btn{
+    bottom: 160px;
+  }
+}
+
+
+/* For screens up to 401px */
+@media only screen and (max-width: 401px) {
+  /* Add styles for small screens here */
+  .prompt-essentials {
+      
+      background-color: #212121;
+      width: 80% !important;
+    }
+    .prompt-input{
+      border: 1px solid white;
+    }
+    .response-body{
+      width: 80% !important;
+  }
+  .open-sidebar{
+      width: 180px !important;
+  }
+  .close-sidebar{
+      width: 0px;
+  }
+  footer p{
+      font-size: 14px;
+  }
+  #type{
+      font-size: 25px !important;
+  }
+  .cursor{
+      height: 25px !important;
+  }
+  .img-logo img{
+      width: 70px !important;
+  }
+  
+}
+@media only screen and (max-height: 400px) {
+  /* CSS rules for screens with a maximum height of 600 pixels */
+  .body{
+    display: none;
+  }
+  .login-prompt{
+    display: none !important;
+  }
+  body{
+    height: 95vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .small-screen-msg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+  }
+}
+@media only screen and (min-height: 400px){
+  /* CSS rules for screens with a maximum height of 600 pixels */
+  .scroll-down-btn{
+    bottom: 160px;
+  }
+  footer{
+    background-color: #212121;
+    position: fixed;
+    height: fit-content;
+    margin: 0;
+    padding-top: 5px;
+  }
+}
