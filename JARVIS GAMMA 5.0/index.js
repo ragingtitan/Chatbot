@@ -5,7 +5,6 @@ let token=require('./tokenGenerator')
 console.log(token(10))
 const express = require('express');
 const { GoogleGenerativeAI } = require("@google/generative-ai");
-const API_KEY='AIzaSyDw5Bu6_9erfCIF1BMMVMUIo8E3QI6yLk0';
 const bodyParser = require('body-parser');
 const path = require('path');
 const session=require("express-session");
